@@ -52,10 +52,9 @@
     document.getElementById("input" + id).removeAttribute("hidden")
 
     document.querySelectorAll('[id^="edit-form"]').forEach(form => {
-      form.classList.remove("large");
+      // .toggle(class, condition) adds class if true, removes if false
+      form.classList.toggle("large", form.id === `edit-form${id}`);
     });
-
-    document.getElementById("edit-form" + id).classList.add("large");
   }
 </script>
 <%- include('partials/footer.ejs'); -%>
