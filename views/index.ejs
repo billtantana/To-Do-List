@@ -1,0 +1,61 @@
+<%- include('partials/header.ejs'); -%>
+
+<div class="box" id="heading">
+  <h1>
+    <%= listTitle %>
+  </h1>
+</div>
+
+<div class="box">
+  <% for(let item of listItems){%>
+  <div class="item">
+    <form action="/delete" method="post">
+      <input class="delete-checkbox" type="checkbox" onchange="this.form.submit()" name="deleteItemId" value="<%= item.id %>">
+    </form>
+
+    <p id="title<%=item.id%>">
+      <%= item.title %>
+    </p>
+
+    <form id="edit-form<%=item.id%>" class="edit" action="/edit" method="post">
+      <input type="hidden" name="updatedItemId" value="<%= item.id %>">
+      <input id="input<%=item.id%>" type="text" name="updatedItemTitle" value="<%= item.title %>" autocomplete="off" autofocus="true" hidden="true" />
+      <button id="done<%=item.id%>" class="edit" type="submit" hidden><img class="icon" src="/assets/icons/check-solid.svg" alt="tick image"></button>
+    </form>
+    <button id="edit<%=item.id%>" class="edit edit-button" type="button" onclick="handler('<%=item.id%>')"><img class="icon" src="/assets/icons/pencil-solid.svg" alt="pencil image"></button>
+  </div>
+  <% } %>
+
+  <form class="item" action="/add" method="post">
+    <input type="text" name="newItem" placeholder="<%= error ? error : 'New Item' %>" autocomplete="off" autofocus="true" required />
+    <button id="add-new-item" class="add" type="submit" name="list" value=<%=listTitle %>>+</button>
+  </form>
+</div>
+
+<script>
+  function handler(id) {
+    document.querySelectorAll(".edit-button").forEach(button => {
+      if (button.id !== "edit" + id) {
+        button.disabled = true;
+      }
+    });
+
+    document.querySelectorAll(".delete-checkbox").forEach(checkbox => {
+      checkbox.disabled = true;
+    });
+
+    document.getElementById("add-new-item").disabled = true;
+
+    document.getElementById("title" + id).setAttribute("hidden", true)
+    document.getElementById("edit" + id).setAttribute("hidden", true)
+    document.getElementById("done" + id).removeAttribute("hidden")
+    document.getElementById("input" + id).removeAttribute("hidden")
+
+    document.querySelectorAll('[id^="edit-form"]').forEach(form => {
+      form.classList.remove("large");
+    });
+
+    document.getElementById("edit-form" + id).classList.add("large");
+  }
+</script>
+<%- include('partials/footer.ejs'); -%>
