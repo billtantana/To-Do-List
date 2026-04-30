@@ -1,0 +1,95 @@
+.tab-view {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: 0;
+  text-align: left;
+}
+.tab-view input {
+  position: absolute;
+  display: none;
+}
+.tab-view label {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -ms-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+.tab-view label i {
+  display: block;
+  float: left;
+  margin: 0 8px 0 -2px;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-size: 17px;
+}
+.tab-view input:checked + label {
+  cursor: default;
+}
+
+
+.tab-view label {
+  padding: 0 20px;
+  background: #ffffff;
+  font-size: 13px;
+  line-height: 49px;
+}
+
+.tab-view input:checked + label {
+  background: #fff;
+}
+
+
+.tab-view {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 500px;
+  margin: auto;
+}
+
+.tab-view > label.new-traveler {
+  margin-left: auto;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 0 10px;
+}
+
+.tab-view .user-form-container {
+  flex: 1 1 auto;
+  border: 1px solid #a683e3;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.25rem;
+  background-color: #ffff;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+.tab-view .user-container label {
+  width: 100%;
+}
+
+.user-container {
+    width: 100%;
+}
+
+.tab-view .delete-user-container label {
+  padding: 0 4px;
+  line-height: 2;
+}
+
+.tab-view label i {
+  margin: 0;
+  padding: 0 4px;
+}

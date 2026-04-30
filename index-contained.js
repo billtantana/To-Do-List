@@ -1,4 +1,6 @@
+import "dotenv/config";
 import express from "express";
+import session from "express-session";
 import containedRoutes from './routes/containedRoutes.js'
 
 const app = express();
@@ -10,6 +12,14 @@ app.use(express.urlencoded({ extended: true }));
 
 // Use for files located in public directory
 app.use(express.static("public"));
+
+app.use(
+  session({
+    secret: process.env.SV_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 
 app.use("/", containedRoutes);
 

@@ -1,0 +1,147 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto";
+}
+
+.add-new-user input[type="radio"] {
+  display: none;
+}
+.add-new-user input[type="radio"]:checked + label span {
+  transform: scale(1.25);
+}
+.add-new-user input[type="radio"]:checked + label .red {
+  border: 4px solid #fff;
+}
+.add-new-user input[type="radio"]:checked + label .orange {
+  border: 4px solid #fff;
+}
+.add-new-user input[type="radio"]:checked + label .yellow {
+  border: 4px solid #fff;
+}
+.add-new-user input[type="radio"]:checked + label .olive {
+  border: 4px solid #fff;
+}
+.add-new-user input[type="radio"]:checked + label .green {
+  border: 4px solid #fff;
+}
+.add-new-user input[type="radio"]:checked + label .teal {
+  border: 4px solid #fff;
+}
+.add-new-user input[type="radio"]:checked + label .blue {
+  border: 4px solid #fff;
+}
+.add-new-user input[type="radio"]:checked + label .violet {
+  border: 4px solid #fff;
+}
+.add-new-user input[type="radio"]:checked + label .purple {
+  border: 4px solid #fff;
+}
+.add-new-user input[type="radio"]:checked + label .pink {
+  border: 4px solid #fff;
+}
+.add-new-user label {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.add-new-user label:hover span {
+  transform: scale(1.25);
+}
+.add-new-user label span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease-in-out;
+}
+.add-new-user label span.red {
+  background: #db2828;
+}
+.add-new-user label span.orange {
+  background: #f2711c;
+}
+.add-new-user label span.yellow {
+  background: #fbbd08;
+}
+.add-new-user label span.olive {
+  background: #b5cc18;
+}
+.add-new-user label span.green {
+  background: #21ba45;
+}
+.add-new-user label span.teal {
+  background: #00b5ad;
+}
+.add-new-user label span.blue {
+  background: #2185d0;
+}
+.add-new-user label span.violet {
+  background: #6435c9;
+}
+.add-new-user label span.purple {
+  background: #a333c8;
+}
+.add-new-user label span.pink {
+  background: #e03997;
+}
+
+.header-container h1 {
+  font-size: clamp(1.25rem, 5vw, 2rem);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #a683e3;
+  padding: 0 1rem;
+}
+
+.header-container h1 {
+  margin: 0;
+}
+
+.add-new-user .button-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.add-new-user .button-container button {
+  flex: 1;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #a683e3;
+  border: 0;
+  border-radius: 24px;
+  padding: 15px;
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.new-user-container {
+  max-width: 500px;
+  display: flex;
+  flex-flow: column;
+  margin: 1.5rem auto 0;
+}
+
+.add-new-user input::placeholder {
+  color: #a7938f; /* Tomato red */
+  opacity: 1;    /* Optional: Firefox lowers opacity by default */
+}
+
+.back-button {
+    background: #e4e9fd;
+    border: 0;
+    padding: .5rem 1rem;
+}

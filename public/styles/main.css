@@ -5,10 +5,9 @@ html {
   font-family: "Lexend", sans-serif;
 }
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  min-height: 95vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
 }
 main {
   text-align: center;
@@ -21,8 +20,8 @@ h1 {
 }
 
 .box {
-  max-width: 400px;
-  margin: 50px auto 0;
+  max-width: 500px;
+  margin: 0 auto;
   background: white;
   border-radius: 5px;
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
@@ -132,4 +131,21 @@ button.edit {
 
 .large {
   width: 100%;
+}
+
+.item.choose-date-type {
+    justify-content: space-evenly;
+    max-width: 500px;
+    margin: auto;
+}
+
+.add-container {
+  justify-content: space-around;
+}
+
+.add-new-user-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0;
 }

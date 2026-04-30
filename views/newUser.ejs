@@ -1,0 +1,20 @@
+<%- include('partials/header.ejs'); -%>
+
+<div class="new-user-container">
+  <div class="box header-container">
+    <h1>Add a new user</h1>
+    <form method="get" action="/">
+      <button type="submit" class="back-button">Back List</button>
+    </form>
+  </div>
+  <form action="/new-user" method="post" class="add-new-user">
+    <input type="text" name="name" placeholder="<%= locals.error ? locals.error : "What's your name?"%>" autofocus required>
+
+    <div class="button-container">
+      <button type="reset">Reset</button>
+      <button type="submit">Add</button>
+    </div>
+  </form>
+</div>
+
+<%- include('partials/footer.ejs'); -%>

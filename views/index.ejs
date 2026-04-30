@@ -1,10 +1,27 @@
 <%- include('partials/header.ejs'); -%>
 
+
 <div class="box" id="heading">
-  <h1>
-    <%= listTitle %>
-  </h1>
+  <h1> <%= listTitle %> </h1>
 </div>
+
+<% if (currentUserId) { %>
+
+
+<form action="/date-type" method="post" class="item  choose-date-type">
+  <div>
+    <input id="daily" type="radio" name="dateType" value="daily" onchange="this.form.submit()" <%= listType === 'daily' ? 'checked' : '' %> />
+    <label for="daily">Daily</label>
+  </div>
+  <div>
+    <input id="weekly" type="radio" name="dateType" value="weekly" onchange="this.form.submit()" <%= listType === 'weekly' ? 'checked' : '' %> />
+    <label for="weekly">Weekly</label>
+  </div>
+  <div>
+    <input id="monthly" type="radio" name="dateType" value="monthly" onchange="this.form.submit()" <%= listType === 'monthly' ? 'checked' : '' %> />
+    <label for="monthly">Monthly</label>
+  </div>
+</form>
 
 <div class="box">
   <% for(let item of listItems){%>
@@ -26,11 +43,41 @@
   </div>
   <% } %>
 
-  <form class="item" action="/add" method="post">
-    <input type="text" name="newItem" placeholder="<%= error ? error : 'New Item' %>" autocomplete="off" autofocus="true" required />
-    <button id="add-new-item" class="add" type="submit" name="list" value=<%=listTitle %>>+</button>
+  <form class="" action="/add" method="post">
+    <div class="item add-container">
+      <input type="hidden" name="userId" value="<%= currentUserId %>">
+      <input type="text" name="newItem" placeholder="<%= error ? error : 'New Item' %>" autocomplete="off" autofocus="true" required />
+      <button id="add-new-item" class="add" type="submit" name="list" value=<%=listTitle %>>+</button>
+    </div>
   </form>
 </div>
+
+<% } %>
+
+<div class="add-new-user-container"><a href="/new">Add New User</a></div>
+
+<form class="tab-view tab-view-height-auto" action="/user" method="post">
+  <% users.forEach(function(user) { %>
+
+  <div class="user-form-container" <% if (currentUserId === user.id) { %> style="transform: scale(1.1); z-index: 1;" <% } %>>
+    <div class="user-container">
+      <input type="submit" name="user" value="<%= user.id %>" id="<%= user.id %>">
+      <label for="<%= user.id %>">
+        <%= user.name %>
+      </label>
+    </div>
+
+    <div class="delete-user-container">
+      <input type="submit" name="deleteUser" value="<%= user.id %>" id="delete-<%= user.id %>">
+      <label for="delete-<%= user.id %>">
+        <i class="bi bi-x"></i>
+      </label>
+    </div>
+  </div>
+
+
+  <% }); %>
+</form>
 
 <script>
   function handler(id) {
