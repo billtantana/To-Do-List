@@ -25,7 +25,7 @@ function capitalizeName(name) {
 }
 
 function title(type) {
-    if (type === "daily") {
+  if (type === "daily") {
     listTitle = "Today";
   } else if (type === "weekly") {
     listTitle = "This Week";
@@ -186,33 +186,43 @@ export function newUser(req, res) {
 }
 
 export async function addNewUser(req, res) {
-  const newUser = req.body.name;
+  const newUser = req.body.name.trim();
   const cleanName = capitalizeName(newUser);
 
   try {
-    const user = await query(
-      "INSERT INTO users (name) VALUES ($1) RETURNING *",
-      [cleanName],
+    const result = await query(
+      "SELECT EXISTS(SELECT 1 FROM users WHERE LOWER(name) = LOWER($1))",
+      [newUser],
     );
+    const userExist = result.rows[0].exists; // Returns true or false
 
-    currentUserId = user.rows[0].id;
-    currentUser = user.rows[0].name;
-    listType = "daily";
+    if (!userExist) {
+      const user = await query(
+        "INSERT INTO users (name) VALUES ($1) RETURNING *",
+        [cleanName],
+      );
 
-    res.redirect("/");
+      currentUserId = user.rows[0].id;
+      currentUser = user.rows[0].name;
+      listType = "daily";
+      errorMessage = null;
+
+      res.redirect("/");
+      return;
+    } else {
+      errorMessage = "Email already exist.";
+
+      res.render("newUser.ejs", {
+        error: errorMessage,
+      });
+      return;
+    }
   } catch (error) {
     console.log("There was an error adding a new user: ", error);
+    errorMessage = "There was an error adding a new user.";
 
-    const duplicateName = error.toString();
-
-    if (duplicateName.includes("users_name_key")) {
-      errorMessage = cleanName + " is already a traveler.";
-    } else {
-      errorMessage = "There was an error adding a new user.";
-    }
-
-    res.render("new.ejs", {
-      errorMessage: errors,
+    res.render("newUser.ejs", {
+      error: errorMessage,
     });
   }
 }
@@ -231,7 +241,7 @@ export async function findUser(req, res) {
 
       errorMessage = null;
 
-      title('daily')
+      title("daily");
 
       res.redirect("/");
       return;
